@@ -10,8 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@2e205a28d0e1da00c5f53b161f4067b052c61f34
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
       - name: Create comment
-        uses: JJ/pr-greeting-action@releases/v1
+        uses: JJ/pr-greeting-action@01953a8c191056b059c8dbc667d833aa082fd865
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           greeting: |
